@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using quizAPI.Contracts;
 using quizAPI.Data;
 using quizAPI.Models;
+using quizAPI.Services;
 
 namespace quizAPI.Controllers
 {
@@ -10,37 +11,38 @@ namespace quizAPI.Controllers
     [ApiController]
     public class PlayersController : ControllerBase
     {
-        readonly IUnitOfWork _unitOfWork;
-        public PlayersController(IUnitOfWork unitOfWork)
+        readonly PlayerManager _manager;
+        public PlayersController(IUnitOfWork unitOfWork, PlayerManager manager)
         {
-            _unitOfWork = unitOfWork;
+            _manager = manager;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> CreatePlayer([FromBody] RegisterViewModel model)
         {
-            Player player = new Player
-            {
-                Email = model.Email,
-                Username = model.Username,
-                Score = 0,
-                ElapsedTime = 0
-            };
-
-            var existentPlayer = (await _unitOfWork.Players
-                .Find<Player>(p => p.Email == player.Email
-                && p.Username == model.Username))
-                .FirstOrDefault();
-
-            if (existentPlayer is null)
-            {
-                await _unitOfWork.Players.Create(player);
-                await _unitOfWork.Save();
-            }
-            else
-                player = existentPlayer;
+            await _manager.CreatePlayer(model);
 
             return Ok(model);
+        }
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdatePlayer(int id, [FromBody] UpdatePlayerViewModel model)
+        {
+            string result = await _manager.UpdatePlayer(id, model);
+
+            if (result != null)
+                return NotFound(result);
+
+            return NoContent();
+        }
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            string result = await _manager.DeletePlayer(id);
+
+            if (result != null)
+                return NotFound(result);
+
+            return Ok(result);
         }
     }
 }
