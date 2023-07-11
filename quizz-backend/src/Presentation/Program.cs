@@ -1,4 +1,11 @@
+using Application;
+using Application.Questions.Commands.CreateQuestion;
+using Application.Questions.Queries.GetQuestions;
+using Domain.Models;
 using Infrastructure;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace Presentation;
 
@@ -12,7 +19,10 @@ public class Program
         builder.Services.AddAuthorization();
 
 
+        // Add Services
+        builder.Services.AddApplicationServices();
         builder.Services.AddInfrastructureServices(builder.Configuration);
+        //builder.Services.AddPresentationServices();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -50,6 +60,19 @@ public class Program
         })
         .WithName("GetWeatherForecast")
         .WithOpenApi();
+
+
+
+        app.MapPost("/question/create", async(ISender sender,[FromBody] CreateQuestionCommand command) =>
+        {
+            var questionResult = await sender.Send(command);
+            return questionResult;
+        });
+
+        app.MapGet("/questions", async (ISender sender) =>
+        {
+            return await sender.Send(new GetAllQuestionsQuery());
+        });
 
         app.Run();
     }
