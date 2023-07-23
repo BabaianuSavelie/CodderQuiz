@@ -9,7 +9,6 @@ namespace Application.Questions.Commands.CreateQuestion;
 public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, Question>
 {
     private readonly IQuestionManager _questionManager;
-    private readonly IOptionManager _optionManager;
     private readonly IUnitOfWork _unitOfWork;
 
     public CreateQuestionCommandHandler(IQuestionManager questionManager, IUnitOfWork unitOfWork)
@@ -30,6 +29,7 @@ public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionComman
                 Label = o.Label,
                 IsCorrect = o.IsCorrect
             }).ToList(),
+            QuizzId = request.QuizzId,
         };
 
 

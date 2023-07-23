@@ -7,8 +7,15 @@ public class QuestionConfiguration : IEntityTypeConfiguration<Question>
 {
     public void Configure(EntityTypeBuilder<Question> builder)
     {
-        builder
-            .HasMany(q => q.Options);
+        builder.ToTable("Questions");
 
+        builder.HasKey(q => q.Id);
+
+        builder.Property(q=>q.Id)
+            .ValueGeneratedNever();
+
+        builder.HasMany(q => q.Options)
+            .WithOne()
+            .HasForeignKey(q => q.QuestionId);
     }
 }

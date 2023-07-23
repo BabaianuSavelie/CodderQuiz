@@ -1,6 +1,8 @@
-﻿using Application.Common.Interfaces.Repository;
+﻿using Application.Common.Interfaces.Repositories;
+using Application.Common.Interfaces.Repository;
 using Application.Data;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +21,8 @@ public static class ConfigureServices
 
         // Add Repositories
         services.AddScoped<IQuestionRepository, QuestionRepository>();
-        services.AddScoped<IOptionRepository, OptionRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IQuizzRepository, QuizzRepository>();
 
         return services;
     }

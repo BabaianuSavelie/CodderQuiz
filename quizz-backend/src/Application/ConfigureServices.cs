@@ -13,7 +13,6 @@ public static class ConfigureServices
             configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
         services.AddScoped<IQuestionManager, QuestionManager>();
-        services.AddScoped<IOptionManager, OptionManager>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
