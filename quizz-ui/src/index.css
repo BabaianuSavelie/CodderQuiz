@@ -1,3 +1,9 @@
+@import "@fontsource/work-sans/";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero {
+  min-height: 90vh;
+}

@@ -1,3 +1,5 @@
+import { FaPlay } from "react-icons/fa";
+
 type Props = {
   title: string;
   description: string;
@@ -11,7 +13,10 @@ const Card = (props: Props) => {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Start Quizz</button>
+          <button className="btn btn-primary">
+            <FaPlay />
+            Start Quizz
+          </button>
         </div>
       </div>
     </div>
