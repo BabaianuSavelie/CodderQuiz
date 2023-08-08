@@ -8,12 +8,12 @@ type Props = {
 const Card = (props: Props) => {
   const { title, description } = props;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-200 shadow-lg shadow-neutral-900">
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <p>{description}</p>
+        <p className="text-sm line-clamp-1">{description}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary btn-sm">
             <FaPlay />
             Start Quizz
           </button>

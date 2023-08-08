@@ -6,24 +6,20 @@ import Image from "../assets/hero_image.png";
 const Hero = () => {
   return (
     <div className="hero min-h-screen">
-      <div className="hero-overlay bg-opacity-0"></div>
-      <div className="hero-content flex-col-reverse text-center text-neutral-content">
+      <div className="hero-content flex-col-reverse text-center">
         <img
           src={Image}
           className="max-w-md rounded-lg hidden md:block my-7"
           alt="Quizz test image"
         />
-        <div className="max-w-4xl text-center">
-          <div className="mb-10 flex">
-            <h1 className="heading-font text-6xl text-slate-500 font-bold">
-              Expand your Knowledge with
-              <span className="text-orange-300 relative ml-3">
-                QuizzyMind!
-                <img src={Line} className="absolute right-0" alt="" />
-              </span>
-            </h1>
-          </div>
-
+        <div className="max-w-4xl">
+          <h1 className="heading-font text-6xl text-slate-500 font-bold mb-6">
+            Expand your Knowledge with
+            <span className="text-orange-300 relative ml-3">
+              QuizzyMind!
+              <img src={Line} className="absolute right-0" alt="" />
+            </span>
+          </h1>
           <p className="mb-5 text-lg text-center text-gray-400">
             Welcome to QuizzyMind, the app that expands your horizons! Engage
             your intellect with stimulating quizzes, and unlock the power of

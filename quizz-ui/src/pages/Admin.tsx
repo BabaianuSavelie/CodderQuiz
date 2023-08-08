@@ -1,5 +1,11 @@
+import Drawer from "../components/Drawer";
+
 const Admin = () => {
-  return <div>Admin</div>;
+  return (
+    <div>
+      <Drawer />
+    </div>
+  );
 };
 
 export default Admin;

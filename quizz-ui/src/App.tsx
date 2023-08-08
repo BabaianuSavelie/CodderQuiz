@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -8,11 +8,23 @@ import Login from "./pages/Login";
 function App() {
   return (
     <>
-      <Navbar />
-
+      {/* Routes with Navbar*/}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          element={
+            <>
+              <Navbar isLoggedIn={false} />
+              <Outlet />
+            </>
+          }
+        >
+          <Route path="/" element={<Home />} />
+        </Route>
+
+        {/* Routes without navbar*/}
+        <Route path="/admin">
+          <Route path="dashboard" element={<Admin />} />
+        </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
