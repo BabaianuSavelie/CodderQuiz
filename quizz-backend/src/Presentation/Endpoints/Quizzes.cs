@@ -10,7 +10,7 @@ public class Quizzes : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("quizzes", async (ISender sender, QuizzRequest request) =>
+        app.MapPost("quizzes", async (ISender sender, CreateQuizzRequest request) =>
         {
             var command = request.Adapt<CreateQuizzCommand>();
 

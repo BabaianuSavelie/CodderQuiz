@@ -8,7 +8,7 @@ public record CreateQuizzCommand(
     Guid CategoryId) : IRequest<QuizzResponse>;
 
 
-public record QuizzRequest(string Title,
+public record CreateQuizzRequest(string Title,
     string Description,
     Guid CategoryId);
 

@@ -1,7 +1,13 @@
 import Card from "./Card";
 import { FiPlusCircle } from "react-icons/fi";
+import { Quizz } from "../shared/types/quizz.type";
 
-const Drawer = () => {
+type Props = {
+  data: Quizz[];
+};
+
+const Drawer = (props: Props) => {
+  const { data } = props;
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -10,22 +16,13 @@ const Drawer = () => {
         <div className="w-full p-3">
           <h1 className="text-4xl font-bold my-4">Quizzes</h1>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-            <Card
-              title="C# Quizz"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vero laudantium quaerat corrupti a natus magni mollitia optio beatae laborum?"
-            />
-            <Card
-              title="C# Quizz"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vero laudantium quaerat corrupti a natus magni mollitia optio beatae laborum?"
-            />
-            <Card
-              title="C# Quizz"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vero laudantium quaerat corrupti a natus magni mollitia optio beatae laborum?"
-            />
-            <Card
-              title="C# Quizz"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo vero laudantium quaerat corrupti a natus magni mollitia optio beatae laborum?"
-            />
+            {data.map((quizz) => (
+              <Card
+                key={quizz.id}
+                title={quizz.title}
+                description={quizz.description}
+              />
+            ))}
           </div>
         </div>
         <label
