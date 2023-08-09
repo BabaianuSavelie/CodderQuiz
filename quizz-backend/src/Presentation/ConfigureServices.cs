@@ -8,6 +8,14 @@ public static class ConfigureServices
     {
         services.AddCarter();
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("CORSPolicy",policy =>
+            {
+                policy.AllowAnyOrigin();
+            });
+        });
+
         return services;
     }
 }
