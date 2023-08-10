@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Quizzes from "./pages/Quizzes";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -23,7 +25,10 @@ function App() {
 
         {/* Routes without navbar*/}
         <Route path="/admin">
-          <Route path="dashboard" element={<Admin />} />
+          <Route path="dashboard" element={<Admin />}>
+            <Route path="quizzes" element={<Quizzes />} />
+            <Route path="categories" element={<Categories/>}/>
+          </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
