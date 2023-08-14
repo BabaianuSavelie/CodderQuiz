@@ -18,6 +18,7 @@ public class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, IEn
         var result = await _context.Categories.ToListAsync(cancellationToken);
 
         return result.Select(c => new CategoryResponse(c.Id, c.Name))
+            .OrderByDescending(c => c.Id)
             .ToList();
     }
 }

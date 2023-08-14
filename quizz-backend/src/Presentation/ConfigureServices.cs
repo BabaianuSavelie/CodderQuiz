@@ -12,7 +12,9 @@ public static class ConfigureServices
         {
             options.AddPolicy("CORSPolicy",policy =>
             {
-                policy.AllowAnyOrigin();
+                policy.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin();
             });
         });
 

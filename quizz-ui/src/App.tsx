@@ -26,8 +26,9 @@ function App() {
         {/* Routes without navbar*/}
         <Route path="/admin">
           <Route path="dashboard" element={<Admin />}>
+            <Route index element={<Quizzes />} />
             <Route path="quizzes" element={<Quizzes />} />
-            <Route path="categories" element={<Categories/>}/>
+            <Route path="categories" element={<Categories />} />
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
